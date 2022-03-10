@@ -11,7 +11,7 @@ namespace WindowsFormsApp1._0
     public partial class Blank : Form
     {
         bool fl = false; // флаг отвечает за то, что все поля заполнены пользователем
-        Image excl_mark = Image.FromFile("D:\\Учёба\\ООП\\Лабы\\Лаба 1\\WindowsFormsApp1.0\\изображения\\Empty.jpg");
+        Image excl_mark = Image.FromFile("D:\\Учёба\\ООП\\Лабы\\Лаба 1\\WindowsFormsApp1.0\\WindowsFormsApp1.0\\изображения\\Empty.jpg");
         string password = "";
         bool pswrd_equal = false;
         Color yellow = System.Drawing.ColorTranslator.FromHtml("#fafbde");
@@ -160,7 +160,7 @@ namespace WindowsFormsApp1._0
                 pctrBx_robot.Name = "pctrBx_robot";
                 pctrBx_robot.Size = new System.Drawing.Size(15, 15);
                 pctrBx_robot.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-                pctrBx_robot.Image = Image.FromFile("D:\\Учёба\\ООП\\Лабы\\Лаба 1\\WindowsFormsApp1.0\\изображения\\green_mark.jpg");
+                pctrBx_robot.Image = Image.FromFile("D:\\Учёба\\ООП\\Лабы\\Лаба 1\\WindowsFormsApp1.0\\WindowsFormsApp1.0\\изображения\\green_mark.jpg");
                 pctrBx_robot.Visible = true;
             //}
         }

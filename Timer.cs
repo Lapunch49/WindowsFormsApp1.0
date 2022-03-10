@@ -49,10 +49,12 @@ namespace WindowsFormsApp1._0
             { // если время истекло, таймер ост-ся, выводится сообщение пользователю
                 timer1.Stop();
                 // воспроизводим звук таймера
-                System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"D:\Music\shkolnyiy-zvonok-na-peremenu.wav");
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"D:\Учёба\ООП\Лабы\Лаба 1\WindowsFormsApp1.0\chasyi-tikane-sekundomera-24102.wav");
                 player.Play();
                 if (MessageBox.Show("Time is up", "Timer", MessageBoxButtons.OK) == DialogResult.OK)
-                { // обновляем время (у объекта и у label)
+                {   //останавливаем музыку
+                    player.Stop();
+                    // обновляем время (у объекта и у label)
                     rem_time.hour = int.Parse(nud_hour.Text.ToString());
                     rem_time.min = int.Parse(cmbx_min.Text.ToString());
                     rem_time.sec = int.Parse(cmbx_sec.Text.ToString());

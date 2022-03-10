@@ -15,7 +15,7 @@ namespace WindowsFormsApp1._0
             InitializeComponent();
             SetSize();
         }
-        private bool isMouse = false;
+        private bool isMousePress = false;
         private class ArrPoints
         {
             private int index = 0;
@@ -47,6 +47,7 @@ namespace WindowsFormsApp1._0
                 return points;
             }
         }
+
         private ArrPoints arrPoints = new ArrPoints(2);
         Bitmap bmp;
         Graphics g;
@@ -68,18 +69,18 @@ namespace WindowsFormsApp1._0
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            isMouse = true;
+            isMousePress = true;
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            isMouse = false;
+            isMousePress = false;
             arrPoints.ResetPoints();
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!isMouse) { return;}
+            if (!isMousePress) { return;}
             arrPoints.SetPoint(e.X, e.Y);
             if (arrPoints.GetCountPoints() >= 2)
             {
