@@ -16,39 +16,57 @@ namespace WindowsFormsApp1._0
             SetSize();
         }
         private bool isMousePress = false;
-        private class ArrPoints
+        private class Line
         {
-            private int index = 0;
-            private Point[] points;
-
-            public ArrPoints(int size)
+            private Point p1;
+            private Point p2;
+            private bool both;
+            public Line(int size)
             {
-                if (size <= 0) size = 2;
-                points = new Point[size];
+                p1 = default;
+                p2 = default;
+                both = false;
             }
             public void SetPoint(int x, int y)
             {
-                if (index >= points.Length)
+                if (both == false)
                 {
-                    index = 0;
+                    if (p1 == default)
+                        p1 = new Point(x, y);
+                    else
+                    {
+                        p2 = new Point(x, y);
+                        both = true;
+                    }
                 }
-                points[index++] = new Point(x, y);
+                else { 
+                    p1 = new Point(x, y); 
+                    both = false; 
+                }
             }
             public void ResetPoints()
             {
-                index = 0;
+                both = false;
+                p1 = default;
+                p2 = default;
             }
-            public int GetCountPoints()
+            public bool GetBoth()
             {
-                return index;
+                return both;
             }
             public Point[] GetPoints()
             {
-                return points;
+                return new Point[] { p1,p2};
+            }
+            public Point GetPoint(int ind)
+            {
+                if (ind == 1)
+                    return p1;
+                else return p2;
             }
         }
 
-        private ArrPoints arrPoints = new ArrPoints(2);
+        private Line line = new Line(2);
         Bitmap bmp;
         Graphics g;
         Pen pen = new Pen(Color.Black, 3f);
@@ -75,18 +93,18 @@ namespace WindowsFormsApp1._0
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             isMousePress = false;
-            arrPoints.ResetPoints();
+            line.ResetPoints();
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (!isMousePress) { return;}
-            arrPoints.SetPoint(e.X, e.Y);
-            if (arrPoints.GetCountPoints() >= 2)
+            line.SetPoint(e.X, e.Y);
+            if (line.GetBoth() == true)
             {
-                g.DrawLines(pen, arrPoints.GetPoints());
+                g.DrawLines(pen, line.GetPoints());
                 pictureBox1.Image = bmp;
-                arrPoints.SetPoint(e.X, e.Y);
+                line.SetPoint(e.X, e.Y);
             }
         }
 
