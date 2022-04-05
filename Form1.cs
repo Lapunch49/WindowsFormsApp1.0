@@ -16,7 +16,8 @@ namespace WindowsFormsApp1._0
         Panel panel_add = new Panel(); // невидимая панель, которая появляется при нажатии на кнопку
         // и которая позволяет создавать и удалять кнопки на себе
         Panel panel_style = new Panel(); // для изм. стиля формы
-        CheckedListBox style = new CheckedListBox();
+        //CheckedListBox style = new CheckedListBox();
+        ListBox style = new ListBox();
         Label lb_date = new Label();
         Label lb_time = new Label();
         Color cur_color = Color.Plum;
@@ -104,10 +105,11 @@ namespace WindowsFormsApp1._0
             panel_style.Visible = false;
             panel_style.MouseMove += new MouseEventHandler(frmMain_MouseMove);
 
-            // добавляем checkedListBox
+            // добавляем ListBox
             panel_style.Controls.Add(style);
             style.BackColor = cur_color;
             style.Width = panel_left.Width;
+            style.Font = new Font("Segoe UI", 10f);
             style.Items.AddRange(new object[] { "Pink", "Orange", "Blue" });
             style.SelectedIndexChanged += new EventHandler(this.style_SelectedIndexChanged);
             style.MouseMove += new MouseEventHandler(frmMain_MouseMove);

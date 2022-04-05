@@ -10,6 +10,8 @@ namespace WindowsFormsApp1._0
 {
     public partial class Blank : Form
     {
+        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+        ProgressBar load = new ProgressBar();
         bool fl = false; // флаг отвечает за то, что все поля заполнены пользователем
         Image excl_mark = Image.FromFile("D:\\Учёба\\ООП\\Лабы\\Лаба 1\\WindowsFormsApp1.0\\WindowsFormsApp1.0\\изображения\\Empty.jpg");
         string password = "";
@@ -21,6 +23,23 @@ namespace WindowsFormsApp1._0
             // удаляем вторую вкладку, чтобы пользователь не мог с ней работать, пока не заполнил все данные
             //tabPage2.Enabled = false;
             tbCntrl_blank.TabPages.Remove(tabPage2);
+            // свойства таймера
+            timer.Interval = 500;
+            timer.Tick += new EventHandler(this.timer_Tick);
+            // и прогресс бара
+            load.Maximum = 4;
+            load.Value = 0;
+        }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (load.Value != load.Maximum)
+                load.Value += 1;
+            else
+            {
+                timer.Enabled = false;
+                MessageBox.Show("Your data has been successfully saved");
+                load.Visible = false;
+            }
         }
         private void check_fields() // проверка, все ли поля заполнены
         {
@@ -94,9 +113,15 @@ namespace WindowsFormsApp1._0
                 {
                     lb_pswEq.Text = "* Please complete the captcha below";
                 }
-                else
+                else if (load.Value == 0)
                 {
-                    //trackBar
+                    // загрузка progressBar 
+                    load.Visible = true;
+                    timer.Enabled = true;
+                    //if (load.Value != load.Maximum)
+                    //    System.Windows.Forms.MessageBox.Show(load, "Loading...");
+                    tbCntrl_blank.TabPages[1].Controls.Add(load);
+                    load.Location = new Point(50, 375);
                 }
             }
         }
@@ -165,19 +190,4 @@ namespace WindowsFormsApp1._0
             //}
         }
     }
-    //public class Profile
-    //{
-    //    public string name;
-    //    public string surname;
-    //    public bool gender;
-    //    public DateTime DOB;
-    //    public string asddress;
-    //    public int phone;
-    //    public string email;
-    //    public Image photo;
-    //    public void clear()
-    //    {
-
-    //    }
-    //}
 }
