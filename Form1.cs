@@ -22,6 +22,11 @@ namespace WindowsFormsApp1._0
         Label lb_time = new Label();
         Color cur_color = Color.Plum;
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer(); // для отображения тек. времени после появления label
+        //database
+        string[] user_log = new string[4];
+        string[] user_pas = new string[4];
+
+
         public frmMain()
         {
             InitializeComponent();
@@ -44,7 +49,7 @@ namespace WindowsFormsApp1._0
             lb_paint.Text = "Paint event: ";
             lb_paint.Text += rand.Next(1, 100).ToString();
         }
-        private void New_Form(string form_name)// открытие новой формы
+        public void New_Form(string form_name)// открытие новой формы
         {
             // проверяем не была ли уже открыта эта форма
             bool fl = false;
@@ -80,6 +85,14 @@ namespace WindowsFormsApp1._0
                 else if (form_name == "Timer")
                 {
                     new_frm = new Timer();
+                }
+                else if (form_name == "Simple_pass")
+                {
+                    new_frm = new SimplePass();
+                }
+                else if (form_name == "DifficultPass")
+                {
+                    new_frm = new DifficultPass();
                 }
                 new_frm.Show();
             }
@@ -144,12 +157,13 @@ namespace WindowsFormsApp1._0
 
         private void btn_paint_Click(object sender, EventArgs e)
         {
-            New_Form("Paint");
+            New_Form("Simple_pass");
+            //New_Form("Paint");
         }
 
         private void btn_calc_Click(object sender, EventArgs e)
         {
-            New_Form("Calculator");
+            New_Form("DifficultPass");
         }
 
         private void btn_blank_Click(object sender, EventArgs e)

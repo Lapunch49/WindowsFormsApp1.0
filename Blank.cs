@@ -122,6 +122,11 @@ namespace WindowsFormsApp1._0
                     //    System.Windows.Forms.MessageBox.Show(load, "Loading...");
                     tbCntrl_blank.TabPages[1].Controls.Add(load);
                     load.Location = new Point(50, 375);
+                    //загрузка в бд инфы о новом пользователе
+                    User_st db = new User_st(@"db.txt");
+                    User new_user = new User(tb_login.Text, tb_password.Text);
+                    db.add(new_user);
+                    db.save(@"db.txt");
                 }
             }
         }
